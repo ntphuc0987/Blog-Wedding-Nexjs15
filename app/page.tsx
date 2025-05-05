@@ -33,7 +33,7 @@ export default function Home() {
       <h1 className="text-3xl font-bold tracking-tigh mb-8">Latest posts</h1>
 
       {/* Lay out */}
-      <Suspense fallback={<SkeletonCard /> }>
+      <Suspense fallback={<SkeletonCard />}>
         <BlogPosts />
       </Suspense>
     </div>
