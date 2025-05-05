@@ -25,7 +25,7 @@ const DashboardRoute = async () => {
     if(!user) {
         return console.log("User not found")
     }
-    const data = await getData(user.id);
+    const data = await getData(user?.id);
 
 
 
