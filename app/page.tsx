@@ -3,6 +3,7 @@ import BlogPostCard from "@/components/general/BlogPostCard";
 import { SkeletonCard } from "@/components/general/Skeleton";
 import { Suspense } from "react";
 
+export const revalidate = 60;
 
 const getData = async () => {
 

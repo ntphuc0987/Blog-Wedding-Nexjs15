@@ -2,6 +2,7 @@
 
 import { prisma } from "@/app/utils/db"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
+import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
 
@@ -34,7 +35,7 @@ export const handleSubmisson = async (formData: FormData) => {
     });
 
 
-
+    revalidatePath("/")
     return redirect('/dashboard')
 
 
