@@ -1,8 +1,10 @@
 import { prisma } from "@/app/utils/db"
 import BlogPostCard from "@/components/general/BlogPostCard"
+import { SkeletonCard } from "@/components/general/Skeleton"
 import { buttonVariants } from "@/components/ui/button"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import Link from "next/link"
+import { Suspense } from "react"
 
 
 const getData = async (userId: string) => {
@@ -19,16 +21,6 @@ const getData = async (userId: string) => {
 
 const DashboardRoute = async () => {
 
-    const { getUser } = getKindeServerSession()
-    const user = await getUser()
-
-    if(!user) {
-        return console.log("User not found")
-    }
-    const data = await getData(user?.id);
-
-
-
     return (
         <div>
             <div className="flex items-center justify-between mb-4">
@@ -37,13 +29,33 @@ const DashboardRoute = async () => {
                     Create Post
                 </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cold-2 lg:grid-cols-3 gap-4 mt-4">
-                {data.map((item) => (
-                    <BlogPostCard key={item.id} data={item} />
-                ))}
-            </div>
+            <Suspense fallback={<div className=""><SkeletonCard /></div>}>
+                <div className="grid grid-cols-1 md:grid-cold-2 lg:grid-cols-3 gap-4 mt-4">
+                    <BlogPosts />
+                </div>
+            </Suspense>
         </div>
     )
 }
 
 export default DashboardRoute
+
+const BlogPosts = async () => {
+
+    const { getUser } = getKindeServerSession()
+    const user = await getUser()
+
+    if (!user) {
+        return <div>User not found</div>;
+    }
+
+    const data = await getData(user?.id);
+
+    return (
+        <>
+            {data.map((item) => (
+                <BlogPostCard key={item.id} data={item} />
+            ))}
+        </>
+    )
+}
