@@ -1,5 +1,5 @@
 
-import { handleSubmisson } from '@/action'
+import { handleSubmisson } from '@/app/action'
 import Submitbutton from '@/components/general/Submitbutton'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'

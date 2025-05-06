@@ -20,6 +20,9 @@ const getData = async () => {
       authorImage: true,
       createdAt: true,
       updatedAt: true,
+    },
+    orderBy: {
+      createdAt: "desc"
     }
   })
   return data;
