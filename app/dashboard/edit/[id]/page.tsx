@@ -10,22 +10,34 @@ import { handleUpdate } from '@/app/action'
 import Submitbutton from '@/components/general/Submitbutton'
 import { prisma } from '@/app/utils/db'
 
-type Props = { params: { id: string } };
-
-
-const page = async ({ params: { id } }: Props) => {
+const getPostId = async (id: string) => {
 
     const { getUser } = getKindeServerSession()
     const user = await getUser()
-    if (!user) {
-        return redirect("/api/auth/login")
-    }
 
     const post = await prisma.blogPost.findFirst({
-        where: { id, authorId: user.id },
+        where: {
+            id,
+            authorId: user?.id
+        },
     });
 
-    if (!post) return notFound();
+    if (!post) {
+        return notFound()
+    }
+
+    return post
+
+}
+
+type Params = Promise<{ id: string }>
+
+
+const page = async ({ params }: { params: Params }) => {
+
+    const { id } = await params
+
+    const post = await getPostId(id)
 
     return (
         <div>
