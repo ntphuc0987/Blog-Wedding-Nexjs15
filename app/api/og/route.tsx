@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ImageResponse } from 'next/og';
 
 export async function GETTitle(request: Request) {
@@ -34,7 +35,7 @@ export async function GETTitle(request: Request) {
                             justifyItems: 'center',
                         }}
                     >
-                        <img
+                        <Image
                             alt="Vercel"
                             height={200}
                             src="data:image/svg+xml,%3Csvg width='116' height='100' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M57.5 0L115 100H0L57.5 0z' /%3E%3C/svg%3E"
@@ -97,13 +98,14 @@ export async function GETImage(request: Request) {
                     alignItems: 'center',
                 }}
             >
-                <img
+                <Image
                     width="256"
                     height="256"
                     src={`https://github.com/${username}.png`}
                     style={{
                         borderRadius: 128,
                     }}
+                    alt="Avatar"
                 />
                 <p>github.com/{username}</p>
             </div>
