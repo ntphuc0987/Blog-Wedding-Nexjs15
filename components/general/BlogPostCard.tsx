@@ -1,3 +1,4 @@
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import Image from 'next/image';
 import Link from 'next/link'
 import React from 'react'
@@ -19,7 +20,9 @@ interface IappProps {
     }
 }
 
-const BlogPostCard = ({ data }: IappProps) => {
+const BlogPostCard = async ({ data }: IappProps) => {
+    const { getUser } = await getKindeServerSession()
+    const user = await getUser()
     return (
         <div className='group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg'>
             <Link href={`/post/${data.id}`} className='block w-full h-full'>
@@ -58,9 +61,11 @@ const BlogPostCard = ({ data }: IappProps) => {
                     </div>
                 </div>
             </Link>
-            <Link href={{ pathname: `/dashboard/edit/${data.id}` }} className='absolute top-2 right-2 bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 transition duration-200'>
-                Edit
-            </Link>
+            {user?.id === data.authorId && (
+                <Link href={{ pathname: `/dashboard/edit/${data.id}` }} className='absolute top-2 right-2 bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 transition duration-200'>
+                    Edit
+                </Link>
+            )}
         </div>
     )
 }

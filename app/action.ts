@@ -34,7 +34,7 @@ export const handleSubmisson = async (formData: FormData) => {
         }
     });
 
-    //console.log(data)
+    console.log(data)
 
     revalidatePath("/")
     return redirect('/dashboard')
