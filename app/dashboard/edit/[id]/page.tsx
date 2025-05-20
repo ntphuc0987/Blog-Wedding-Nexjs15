@@ -1,5 +1,5 @@
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import React from 'react'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
