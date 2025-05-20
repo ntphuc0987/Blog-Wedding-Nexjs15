@@ -7,6 +7,7 @@ import React from 'react'
 export const revalidate = 60;
 
 const getData = async (id: string) => {
+    
     const data = await prisma.blogPost.findUnique({
         where: {
             id: id,
