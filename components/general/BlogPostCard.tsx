@@ -4,19 +4,19 @@ import React from 'react'
 
 interface IappProps {
 
-    
 
-data: {
-    id: string;
-    title: string;
-    content: string;
-    imageUrl: string;
-    authorId: string;
-    authorName: string;
-    authorImage: string;
-    createdAt: Date;
-    updatedAt: Date;
-}
+
+    data: {
+        id: string;
+        title: string;
+        content: string;
+        imageUrl: string;
+        authorId: string;
+        authorName: string;
+        authorImage: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }
 }
 
 const BlogPostCard = ({ data }: IappProps) => {
@@ -57,7 +57,9 @@ const BlogPostCard = ({ data }: IappProps) => {
                         </time>
                     </div>
                 </div>
-
+            </Link>
+            <Link href={{ pathname: `/dashboard/edit/${data.id}` }} className='absolute top-2 right-2 bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 transition duration-200'>
+                Edit
             </Link>
         </div>
     )

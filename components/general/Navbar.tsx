@@ -6,6 +6,8 @@ import { RegisterLink, LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextj
 
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
+import { UserIcon } from "@/components/IconsStore/user";
+
 const Navbar = () => {
 
     const { getUser } = useKindeBrowserClient();
@@ -32,8 +34,12 @@ const Navbar = () => {
 
             {user ? (
                 <div className="flex items-center gap-4">
-                    <p>{user.given_name}</p>
-                    <LogoutLink className={`${buttonVariants({variant: "secondary"})} `} >
+                    <p className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                        <Link href={"/profile"} className="flex items-center gap-2">
+                            <UserIcon />{user.given_name}
+                        </Link>
+                    </p>
+                    <LogoutLink className={`${buttonVariants({ variant: "secondary" })} `} >
                         Logout
                     </LogoutLink>
                 </div>

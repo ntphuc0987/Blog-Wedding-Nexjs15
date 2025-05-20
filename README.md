@@ -83,3 +83,12 @@ KINDE_ISSUER_URL=https://<your_kinde_subdomain>.kinde.com
 KINDE_SITE_URL=http://localhost:3000
 KINDE_POST_LOGOUT_REDIRECT_URL=http://localhost:3000
 KINDE_POST_LOGIN_REDIRECT_URL=http://localhost:3000/dashboard
+
+## Set up the Kinde Auth Provider
+[
+    "use client";
+    import {KindeProvider} from "@kinde-oss/kinde-auth-nextjs";
+    export const AuthProvider = ({children}) => {
+    return <KindeProvider>{children}</KindeProvider>;
+    }
+]

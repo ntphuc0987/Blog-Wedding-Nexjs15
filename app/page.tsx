@@ -1,4 +1,5 @@
 import { prisma } from "@/app/utils/db";
+import Analytics from "@/components/Analytics";
 import BlogPostCard from "@/components/general/BlogPostCard";
 import { SkeletonCard } from "@/components/general/Skeleton";
 import { Suspense } from "react";
@@ -53,6 +54,8 @@ const BlogPosts = async () => {
       {data.map((item) => (
         <BlogPostCard data={item} key={item.id} />
       ))}
+
+      <Analytics />
     </div>
   )
 }
